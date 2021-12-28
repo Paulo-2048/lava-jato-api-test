@@ -7,7 +7,7 @@ const con = require('../database')
 const app =  express()
 const port = process.env.Port || 3000
 
-app.get('/user', (req, res) => {
+app.get('/api/user', (req, res) => {
     try {
         let sql = 'SELECT * FROM user_acess'
         con.query(sql, (err, response) => {
