@@ -3,26 +3,16 @@ const {Pool, Client} = require('pg')
 
 const con = require('../database')
 
-
 const app =  express()
-const port = process.env.Port || 3000
 
 app.get('/api/user', (req, res) => {
-    try {
-        let sql = 'SELECT * FROM user_acess'
-        con.query(sql, (err, response) => {
-            res.send(response['rows'])
-            console.log(response)
-        })
-        
-    } catch (err) {
-        console.error(err)
-    } 
-})
-
-
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-  })
+  res.setHeader('Content-Type', 'text/html');
+  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+  res.end(`User:`);
+  let sql = 'SELECT * FROM user_acess'
+  con.query(sql, (err, response) => {
+    res.send(response['rows'])
+    console.log(response)
+});
 
 module.exports = app;
