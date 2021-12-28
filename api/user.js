@@ -1,18 +1,40 @@
-const express = require('express')
-const {Pool, Client} = require('pg')
+const express = require("express");
+const router = express.Router();
 
-const con = require('./database')
-
-const app =  express()
-
-app.get('/', (req, res) => {
-  res.setHeader('Content-Type', 'text/html');
-  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
-  res.end(`User:`);
-  let sql = 'SELECT * FROM user_acess'
-  con.query(sql, (err, response) => {
-    res.send(response['rows'])
-    console.log(response)})
+/**
+ * GET product list.
+ *
+ * @return product list | empty.
+ */
+router.get("/", async (req, res) => {
+  try {
+    res.json({
+      status: 200,
+      message: "Get data has successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Server error");
+  }
 });
 
-module.exports = app;
+module.exports = router;
+
+// const express = require('express')
+// const {Pool, Client} = require('pg')
+
+// const con = require('./database')
+
+// const app =  express()
+
+// app.get('/', (req, res) => {
+//   res.setHeader('Content-Type', 'text/html');
+//   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+//   res.end(`User:`);
+//   let sql = 'SELECT * FROM user_acess'
+//   con.query(sql, (err, response) => {
+//     res.send(response['rows'])
+//     console.log(response)})
+// });
+
+// module.exports = app;
