@@ -1,7 +1,7 @@
 const express = require('express')
 const {Pool, Client} = require('pg')
 
-const con = require('../database')
+const con = require('./database')
 
 const app =  express()
 
