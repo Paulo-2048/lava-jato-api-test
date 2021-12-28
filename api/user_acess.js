@@ -12,7 +12,7 @@ app.get('/api/user', (req, res) => {
   let sql = 'SELECT * FROM user_acess'
   con.query(sql, (err, response) => {
     res.send(response['rows'])
-    console.log(response)
+    console.log(response)})
 });
 
 module.exports = app;
